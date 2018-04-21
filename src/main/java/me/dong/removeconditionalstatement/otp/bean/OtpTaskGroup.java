@@ -24,8 +24,9 @@ public class OtpTaskGroup {
             }
 
             @Override
-            public void task(Map<String, Object> params) {
+            public boolean task(Map<String, Object> params) {
                 log.info("otpTask : {}", getType());
+                return true;
             }
         };
     }
@@ -39,8 +40,9 @@ public class OtpTaskGroup {
             }
 
             @Override
-            public void task(Map<String, Object> params) {
+            public boolean task(Map<String, Object> params) {
                 log.info("otpTask : {}", getType());
+                return true;
             }
         };
     }
@@ -54,8 +56,9 @@ public class OtpTaskGroup {
             }
 
             @Override
-            public void task(Map<String, Object> params) {
+            public boolean task(Map<String, Object> params) {
                 log.info("otpTask : {}", getType());
+                return true;
             }
         };
     }
@@ -69,8 +72,9 @@ public class OtpTaskGroup {
             }
 
             @Override
-            public void task(Map<String, Object> params) {
+            public boolean task(Map<String, Object> params) {
                 log.error("otpTask : {}", getType());
+                return true;
             }
         };
     }

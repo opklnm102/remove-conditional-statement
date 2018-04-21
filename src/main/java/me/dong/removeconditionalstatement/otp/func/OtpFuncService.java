@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 import lombok.extern.slf4j.Slf4j;
 import me.dong.removeconditionalstatement.otp.OtpType;
@@ -16,7 +16,8 @@ import me.dong.removeconditionalstatement.otp.OtpType;
 @Slf4j
 public class OtpFuncService {
 
-    private Map<OtpType, Consumer<Map<String, Object>>> otpTaskMap;
+    // 반환이 있으면 Function<T, R> 사용
+    private Map<OtpType, Function<Map<String, Object>, Boolean>> otpTaskMap;
 
     public OtpFuncService() {
         this.otpTaskMap = new HashMap<>();
@@ -28,22 +29,26 @@ public class OtpFuncService {
 
     public void sendOtp(OtpType otpType, Map<String, Object> params) {
         otpTaskMap.getOrDefault(otpType, otpTaskMap.get(OtpType.NONE))
-                .accept(params);
+                .apply(params);
     }
 
-    private void sendSignUpOtp(Map<String, Object> params) {
+    private boolean sendSignUpOtp(Map<String, Object> params) {
         log.info("signUpOtp");
+        return true;
     }
 
-    private void sendSignInOtp(Map<String, Object> params) {
+    private boolean sendSignInOtp(Map<String, Object> params) {
         log.info("signInOtp");
+        return true;
     }
 
-    private void passwordResetOtp(Map<String, Object> params) {
+    private boolean passwordResetOtp(Map<String, Object> params) {
         log.info("passwordResetOtp");
+        return true;
     }
 
-    private void noneOtp(Map<String, Object> params) {
+    private boolean noneOtp(Map<String, Object> params) {
         log.error("send otp mis matching type");
+        return true;
     }
 }

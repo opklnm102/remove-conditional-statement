@@ -33,15 +33,18 @@ public class OtpLegacyService {
         }
     }
 
-    private void sendSignUpOtp(Map<String, Object> params) {
+    private boolean sendSignUpOtp(Map<String, Object> params) {
         log.info("signUpOtp");
+        return true;
     }
 
-    private void sendSignInOtp(Map<String, Object> params) {
+    private boolean sendSignInOtp(Map<String, Object> params) {
         log.info("signInOtp");
+        return true;
     }
 
-    private void passwordResetOtp(Map<String, Object> params) {
+    private boolean passwordResetOtp(Map<String, Object> params) {
         log.info("passwordResetOtp");
+        return true;
     }
 }

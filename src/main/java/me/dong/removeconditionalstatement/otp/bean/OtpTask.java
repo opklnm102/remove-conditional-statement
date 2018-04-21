@@ -11,5 +11,5 @@ public interface OtpTask {
 
     OtpType getType();
 
-    void task(Map<String, Object> params);
+    boolean task(Map<String, Object> params);
 }

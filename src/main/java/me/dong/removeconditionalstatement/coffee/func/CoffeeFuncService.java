@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CoffeeFuncService {
 
+    // 반환이 없으면 Consumer<T> 사용
     private List<Consumer<Map<String, Object>>> coffeeTasks;
 
     public CoffeeFuncService() {

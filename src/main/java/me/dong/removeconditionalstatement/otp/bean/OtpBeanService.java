@@ -26,7 +26,6 @@ public class OtpBeanService implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         otpTaskMap = otpTasks.stream()
 //                .collect(Collectors.toMap(OtpTask::getType, otpTask -> otpTask));
-                .peek(OtpTask::getType)
                 .collect(Collectors.toMap(OtpTask::getType, Function.identity()));
     }
 
