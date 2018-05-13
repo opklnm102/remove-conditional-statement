@@ -1,5 +1,7 @@
 package me.dong.removeconditionalstatement.discount.step3.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import me.dong.removeconditionalstatement.discount.step3.RateDiscounter;
 
 /**

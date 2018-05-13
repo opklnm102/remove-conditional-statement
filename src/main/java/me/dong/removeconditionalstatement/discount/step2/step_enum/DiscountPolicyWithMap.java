@@ -1,13 +1,16 @@
 package me.dong.removeconditionalstatement.discount.step2.step_enum;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import me.dong.removeconditionalstatement.discount.step2.Discountable;
 
 /**
  * Created by ethan.kim on 2018. 5. 13..
  */
-@Slf4j
-public enum DiscountPolicy implements Discountable {
+public enum DiscountPolicyWithMap implements Discountable {
     // 네이버 할인
     NAVER(10, 0L) {
         @Override
@@ -33,24 +36,24 @@ public enum DiscountPolicy implements Discountable {
         }
     };
 
+    private static Map<String, Discountable> lookup;
+
+    static {
+        lookup = Arrays.stream(DiscountPolicyWithMap.values())
+                .collect(Collectors.toMap(Enum::name, Function.identity()));
+    }
+
     final int discountRate;
 
     final long discountAmt;
 
-    DiscountPolicy(int discountRate, long discountAmt) {
+    DiscountPolicyWithMap(int discountRate, long discountAmt) {
         this.discountRate = discountRate;
         this.discountAmt = discountAmt;
     }
 
+    // DiscountPolicy의 try-catch 제거
     public static Discountable getDiscounter(String discountCode) {
-        if (discountCode == null) {
-            return Discountable.NONE;
-        }
-        try {
-            return DiscountPolicy.valueOf(discountCode);
-        } catch (IllegalArgumentException e) {
-            log.warn("Not found discountCode : {}", discountCode);
-            return Discountable.NONE;
-        }
+        return lookup.getOrDefault(discountCode, Discountable.NONE);
     }
 }

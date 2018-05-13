@@ -1,5 +1,9 @@
 package me.dong.removeconditionalstatement.discount.step3;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -12,11 +16,11 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-//@Entity
-//@DiscriminatorValue("AMT")
+@Entity
+@DiscriminatorValue("AMT")
 public class AmtDiscounter extends AbstractDiscounter {
 
-//    @Column
+    @Column
     private long amt;
 
     @Override

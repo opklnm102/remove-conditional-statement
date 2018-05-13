@@ -57,7 +57,8 @@ public class PaymentService3 implements PaymentService {
 
         // 결제금액
         long paymentAmt = productAmt - discountPolicy.getDiscountAmt(productAmt);
-        // TODO Something...
+
+        // do something..
     }
 
     private Discountable getDiscounter(String discountCode) {
