@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: demo
+  ## Database Settings
+  datasource:
+    driver-class-name: org.h2.Driver
+    hikari:
+      jdbc-url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      username: sa
+      password:
+  sql:
+    init:
+      platform: h2
+      encoding: UTF-8
+  ## JPA
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    generate-ddl: false
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    properties:
+      hibernate:
+        show_sql: true
+        se_sql_comments: false
+        format_sql: true
+  ## H2 Settings
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        trace: false
+        web-allow-others: false
