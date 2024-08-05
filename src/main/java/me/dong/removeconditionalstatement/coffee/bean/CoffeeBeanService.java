@@ -3,7 +3,7 @@ package me.dong.removeconditionalstatement.coffee.bean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +55,13 @@ public class CoffeeBeanService {
         coffeeTasks.add(makeCoffeeTask);
         coffeeTasks.add(deliveryCoffeeTask);
     }
+
+    // or use constructor injection
+    // List<CoffeeTask> coffeeTasks -> CoffeeTask...
+    // Map<String, CoffeeTask> coffeeTasks -> <CoffeeTask bean name, CoffeeTask bean>
+//    public CoffeeBeanService(List<CoffeeTask> coffeeTasks) {
+//        this.coffeeTasks = coffeeTasks;
+//    }
 
     public void buyCoffee(Map<String, Object> params) {
         coffeeTasks.forEach(coffeeTask -> coffeeTask.doTask(params));

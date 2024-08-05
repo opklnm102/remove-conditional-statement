@@ -1,7 +1,5 @@
 package me.dong.removeconditionalstatement.discount.step2.step2_3.lazy;
 
-import org.hibernate.validator.internal.util.stereotypes.ThreadSafe;
-
 import me.dong.removeconditionalstatement.discount.step2.Discountable;
 
 /**
@@ -11,7 +9,6 @@ public class DanawaDiscountPolicy implements Discountable {
 
     private static class DanawaDiscountPolicyHolder {
 
-        @ThreadSafe
         public static DanawaDiscountPolicy instance = new DanawaDiscountPolicy();
     }
 
