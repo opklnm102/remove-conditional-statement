@@ -4,15 +4,13 @@ import lombok.Getter;
 
 @Getter
 public enum UserGradeTypeCode {
-    LOGIN(1, UserGradeCode.LV_00),
-    SALES(2, UserGradeCode.LV_10),
-    SUBSCRIPTION(3, UserGradeCode.LV_20);
+    LOGIN(1),
+    SALES(2),
+    SUBSCRIPTION(3);
 
     private final int order;
-    private final UserGradeCode defaultUserGrade;
 
-    UserGradeTypeCode(int order, UserGradeCode defaultUserGrade) {
+    UserGradeTypeCode(int order) {
         this.order = order;
-        this.defaultUserGrade = defaultUserGrade;
     }
 }

@@ -3,11 +3,15 @@ package me.dong.removeconditionalstatement.membership.code;
 import lombok.Getter;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static me.dong.removeconditionalstatement.membership.code.UserGradeTypeCode.*;
 
 @Getter
+// TODO: UserGradeCode를 여러 UserGradeTypeCode에서 사용할 수 있도록 수정
 public enum UserGradeCode {
     LV_00(LOGIN, 1, "뉴비"),
     LV_01(LOGIN, 2, "베테랑"),
@@ -28,6 +32,22 @@ public enum UserGradeCode {
         this.userGradeType = userGradeType;
         this.weight = weight;
         this.displayName = displayName;
+    }
+
+    private static final Map<UserGradeTypeCode, UserGradeCode> DEFAULT_GRADES;
+
+    static {
+        DEFAULT_GRADES = Arrays.stream(UserGradeTypeCode.values())
+                               .collect(Collectors.toUnmodifiableMap(
+                                       e -> e,
+                                       e -> Arrays.stream(UserGradeCode.values())
+                                                  .filter(grade -> grade.userGradeType == e)
+                                                  .min(Comparator.comparingInt(UserGradeCode::getWeight))
+                                                  .orElseThrow(() -> new IllegalArgumentException("Not found default user grade " + e))));
+    }
+
+    public static UserGradeCode getDefaultUserGrade(UserGradeTypeCode userGradeType) {
+        return DEFAULT_GRADES.get(userGradeType);
     }
 
     public Optional<UserGradeCode> next() {

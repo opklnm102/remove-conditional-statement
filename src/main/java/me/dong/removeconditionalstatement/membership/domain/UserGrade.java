@@ -23,6 +23,6 @@ public class UserGrade {
         this.userId = userId;
         this.platformCode = platformCode;
         this.userGradeType = userGradeType;
-        this.userGrade = userGradeType.getDefaultUserGrade();
+        this.userGrade = UserGradeCode.getDefaultUserGrade(userGradeType);
     }
 }
